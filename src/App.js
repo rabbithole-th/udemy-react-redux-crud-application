@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <label htmlFor="bar">bar</label>
+        <input type="text" onChange={() => {console.log("I am clicked.")}}/>
+      </React.Fragment>
+    )
+//    const greeting = "Hi, Tom"
+//    const dom = <h1 className="foo">{greeting}</h1><input type="text" onClick={() => {console.log("I am clicked.")}}/>;
+  }  
 }
+//class App extends Component {
+//  render() {
+//    return React.createElement(
+//      "div",
+//      null,
+//      "Hello, world!!"
+//    );
+//  }  
+//}
+//function App() {
+//  return (
+//    <div>Hello world.</div>
+//  );
+//}
 
 export default App;
