@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// Storeを生成する
+import { createStore } from 'redux';
+// アプリケーション内のコンポーネント間での値の受け渡しをするためのコンポーネント
+import { Provider} from 'react-redux';
+
 import './index.css';
-import App from './App';
+
+import reducer from './reducers'
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
+const store = createStore(reducer)
+
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
