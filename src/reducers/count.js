@@ -1,5 +1,6 @@
-//アプリケーションのカウントのstateを持つファイル
-import { INCREMENT, DECREMENT } from '../actions'
+//アプリケーションのカウントのstateを持つファイル=reducer
+
+import { INCREMENT, DECREMENT } from '../actions';
 
 const initialState = {value: 0}
 
