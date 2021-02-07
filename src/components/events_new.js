@@ -16,6 +16,7 @@ class EventsNew extends Component {
 
   //Fieldコンポーネントのレンダラー
   renderField(field) {
+    //touched：フィールドを操作したかどうか
     const { input, label, type, meta: { touched, error } } = field
 
     return (
@@ -34,13 +35,15 @@ class EventsNew extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props
+    // pristine：何も入力されていない状態
+    // submitting：submitボタンが押された状態
+    const { handleSubmit, pristine, submitting } = this.props
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <div><Field label="Title" name="title" type="text" component={this.renderField}></Field></div>
         <div><Field label ="Body" name="body" type="text" component={this.renderField}></Field></div>
         <div>
-          <input type="submit" value="Submit" disabled={false} />
+          <input type="submit" value="Submit" disabled={pristine || submitting} />
           <Link to="/" >Cancel</Link>
         </div>
       </form>
