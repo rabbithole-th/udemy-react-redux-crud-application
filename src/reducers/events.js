@@ -2,7 +2,10 @@
 //reducer：変化させるもの=関数※
 //※純粋関数である必要がある（入力値不変、外部の値不変、関数内部の値不変）
 
-import { READ_EVENTS } from '../actions';
+import { 
+  READ_EVENTS,
+  DELETE_EVENT,
+} from '../actions';
 import _ from 'lodash'
 
 //state：状態（valueというpropsを持っている）
@@ -13,6 +16,9 @@ export default (events = {}, action) => {
         case READ_EVENTS:
             // idをキーにしてresponseのjsonのリストをディクショナリ化
             return _.mapKeys(action.response.data, 'id')
+        case DELETE_EVENT:
+            delete events[action.id]
+            return { ...events }
         default:
             // デフォルト時は何もしない
             return events
