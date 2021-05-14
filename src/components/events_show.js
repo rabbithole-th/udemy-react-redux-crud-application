@@ -15,6 +15,7 @@ class EventsShow extends Component {
     this.onDeleteClick = this.onDeleteClick.bind(this)
   }
 
+  // 
   componentDidMount() {
     const { id } = this.props.match.params
     if (id) this.props.getEvent(id)
@@ -49,6 +50,7 @@ class EventsShow extends Component {
   render() {
     // pristine：何も入力されていない状態
     // submitting：submitボタンが押された状態
+    // invalid：バリデーションエラーが発生した状態
     const { handleSubmit, pristine, submitting, invalid } = this.props
 
     return (
@@ -85,6 +87,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = ({ deleteEvent, getEvent, putEvent })
 
+//enableReinitialize：initialValuesが変わるたびにフォームを初期化するかどうか（reduxFormの予約語）
 export default connect(mapStateToProps, mapDispatchToProps)(
   reduxForm({ validate, form: 'eventShowForm', enableReinitialize: true })(EventsShow)
 )

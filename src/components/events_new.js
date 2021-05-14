@@ -37,6 +37,7 @@ class EventsNew extends Component {
   render() {
     // pristine：何も入力されていない状態
     // submitting：submitボタンが押された状態
+    // invalid：バリデーションエラーが発生した状態
     const { handleSubmit, pristine, submitting, invalid } = this.props
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
