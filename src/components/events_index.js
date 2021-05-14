@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
 
 //ActionCreatorをimport
-import { readEvents } from '../actions';
+import { readEvents } from '../actions'
 
 class EventsIndex extends Component {
   //コンポーネントがマウントされたときのイベント
@@ -17,7 +17,7 @@ class EventsIndex extends Component {
   renderEvents() {
     console.log(this.props.events)
     return _.map(this.props.events, event => (
-      <tr>
+      <tr key={event.id}>
         <td>{event.id}</td>
         <td>
           <Link to={`/events/${event.id}`}>
@@ -44,11 +44,13 @@ class EventsIndex extends Component {
               <th>Body</th>
             </tr>
           </thead>
+
           <tbody>
             {this.renderEvents()}
           </tbody>
         </table>
-        <Link to="/events/new">New Events</Link>
+
+        <Link to="/events/new">New Event</Link>
       </React.Fragment>
     )
   }
@@ -56,12 +58,11 @@ class EventsIndex extends Component {
 
 //componentに渡すpropsを制御する
 //stateをコンポーネントに渡す
-const mapStateToProps = state => ({events: state.events})
+const mapStateToProps = state => ({ events: state.events })
 //reducerを呼び出して、reduxで管理しているstateを更新する
 //
-const mapDispatchToProps = {readEvents}
+const mapDispatchToProps = ({ readEvents })
 //こんな書き方もできる
 //const mapDispatchToProps = ({increment, decrement})
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsIndex)
-

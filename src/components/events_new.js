@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm} from 'redux-form'
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom'
 
 // submitのpostに関するイベント
-import { postEvent } from '../actions';
+import { postEvent } from '../actions'
 
 class EventsNew extends Component {
   // コンストラクタ
@@ -31,19 +31,20 @@ class EventsNew extends Component {
   //values：入力値
   async onSubmit(values) {
     await this.props.postEvent(values)
-    this.props.history.push("/")
+    this.props.history.push('/')
   }
 
   render() {
     // pristine：何も入力されていない状態
     // submitting：submitボタンが押された状態
-    const { handleSubmit, pristine, submitting } = this.props
+    const { handleSubmit, pristine, submitting, invalid } = this.props
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
-        <div><Field label="Title" name="title" type="text" component={this.renderField}></Field></div>
-        <div><Field label ="Body" name="body" type="text" component={this.renderField}></Field></div>
+        <div><Field label="Title" name="title" type="text" component={this.renderField} /></div>
+        <div><Field label="Body" name="body" type="text" component={this.renderField} /></div>
+
         <div>
-          <input type="submit" value="Submit" disabled={pristine || submitting} />
+          <input type="submit" value="Submit" disabled={pristine || submitting || invalid} />
           <Link to="/" >Cancel</Link>
         </div>
       </form>
@@ -63,8 +64,8 @@ const validate = values => {
 
 //reducerを呼び出して、reduxで管理しているstateを更新する
 //
-const mapDispatchToProps = {postEvent}
+const mapDispatchToProps = ({ postEvent })
 
 export default connect(null, mapDispatchToProps)(
-  reduxForm({ validate, form: 'eventNewForm'})(EventsNew)
+  reduxForm({ validate, form: 'eventNewForm' })(EventsNew)
 )

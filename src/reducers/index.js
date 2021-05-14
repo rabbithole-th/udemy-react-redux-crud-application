@@ -1,4 +1,4 @@
-import { combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 // redux-formに関するreducerをインポート（分かりやすくするため、as formで名称を変える）
 import { reducer as form } from 'redux-form'
 // イベント一覧に関するreducerをimport（stateとしてvalueを持っている）
