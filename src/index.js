@@ -26,7 +26,7 @@ const enhancer = process.env.NODE_ENV === 'development' ?
 // ミドルウェアとしてreact-thunkを許可する
 const store = createStore(reducer, enhancer)
 
-
+// Mui:material-uiの略
 ReactDOM.render(
   <MuiThemeProvider>
     <Provider store={store}>
